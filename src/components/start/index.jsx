@@ -1,10 +1,15 @@
+import { useState } from 'react';
 import * as Styled from './styles';
 
 export const Start = () => {
+    const [minutes, sethours] = useState(0);
+
     return (
         <Styled.Container>
             <div>
-                <span>00:00</span>
+                <span>
+                    {minutes}:{}
+                </span>
             </div>
             <div>
                 <button>Start</button>
