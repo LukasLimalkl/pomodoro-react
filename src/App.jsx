@@ -1,11 +1,9 @@
-import { useState } from 'react';
+import { Start } from './components/start';
 
 function App() {
-    const [count, setCount] = useState(0);
-
     return (
         <div>
-            <h1>Hello World!</h1>
+            <Start />
         </div>
     );
 }
