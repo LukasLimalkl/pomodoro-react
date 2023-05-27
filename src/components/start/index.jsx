@@ -1,14 +1,13 @@
 import P from 'prop-types';
-import { useState } from 'react';
 import * as Styled from './styles';
 
-export const Start = ({ children }) => {
-    const [minutes, sethours] = useState(0);
-
+export const Start = ({ minutes, seconds }) => {
     return (
         <Styled.Container>
             <div>
-                <span>{minutes}</span>
+                <span>
+                    {minutes}:{seconds}
+                </span>
             </div>
             <div>
                 <button>Start</button>
@@ -19,5 +18,6 @@ export const Start = ({ children }) => {
 };
 
 Start.propTypes = {
-    children: P.number.isRequired,
+    minutes: P.number.isRequired,
+    seconds: P.number.isRequired,
 };
