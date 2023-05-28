@@ -1,23 +1,23 @@
-import P from 'prop-types';
 import * as Styled from './styles';
 
-export const Start = ({ minutes, seconds }) => {
-    return (
-        <Styled.Container>
-            <div>
-                <span>
-                    {minutes}:{seconds}
-                </span>
-            </div>
-            <div>
-                <button>Start</button>
-                <button>Pause</button>
-            </div>
-        </Styled.Container>
-    );
+const minutes = 0;
+const seconds = 0;
+
+let duration = minutes.current * 60;
+
+const timer = (duration) => {
+    let timer = duration;
+    let minutes;
+
+    setInterval(() => {
+        minutes = timer / 60;
+    }, 1000);
 };
 
-Start.propTypes = {
-    minutes: P.number.isRequired,
-    seconds: P.number.isRequired,
+export const Start = () => {
+    return (
+        <Styled.Container>
+            {minutes}:{seconds}
+        </Styled.Container>
+    );
 };

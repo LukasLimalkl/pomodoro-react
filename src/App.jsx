@@ -1,10 +1,13 @@
+import { Config } from './components/config';
 import { Start } from './components/start';
+import * as Styled from './styles';
 
 function App() {
     return (
-        <div>
+        <Styled.Container>
             <Start />
-        </div>
+            <Config />
+        </Styled.Container>
     );
 }
 
