@@ -1,64 +1,22 @@
-import { useEffect, useState } from 'react';
+import { format } from 'date-fns';
+import React, { useEffect, useState } from 'react';
 import * as Styled from './styles';
 
-import React from 'react';
-
 export const Start = () => {
-    const [display, setDisplay] = useState('25 : 00');
-    const [isCounting, setIsCounting] = useState(false);
+    const periodTime = 60 * 25;
+    const [timer, setTimer] = useState(periodTime);
+    const [timeLeft, setTimeLeft] = useState(0);
 
     useEffect(() => {
-        let intervalId;
-
-        if (isCounting) {
-            let min = 25;
-            let sec = 0;
-            let duration = min * 60 + sec;
-            let timer = duration;
-
-            intervalId = setInterval(() => {
-                let minutes = Math.floor(timer / 60);
-                let seconds = Math.floor(timer % 60);
-
-                minutes = minutes < 10 ? '0' + minutes : minutes;
-                seconds = seconds < 10 ? '0' + seconds : seconds;
-
-                const newDisplay = `${minutes} : ${seconds}`;
-                setDisplay(newDisplay);
-
-                timer--;
-
-                if (timer < 0) {
-                    clearInterval(intervalId);
-                }
-            }, 1000);
-        }
-
-        return () => {
-            clearInterval(intervalId);
-        };
-    }, [isCounting]);
-
-    const handleStartPause = () => {
-        if (isCounting) {
-            setIsCounting(false);
-        } else {
-            setIsCounting(true);
-        }
-    };
-
-    const reStart = () => {
-        setIsCounting(false);
-        setDisplay('25 : 00');
-    };
+        setTimeout(() => {
+            setTimer(timer - 1);
+            setTimeLeft(format(timer * 1000, 'mm:ss'));
+        }, 1000);
+    }, [timer]);
 
     return (
-        <div>
-            <Styled.Container>{display}</Styled.Container>
-            <button onClick={handleStartPause}>
-                {isCounting ? 'Pausar' : 'Iniciar'}
-            </button>
-            <button onClick={reStart}>Reniciar</button>
-        </div>
+        <Styled.Container>
+            <span>{timeLeft}</span>
+        </Styled.Container>
     );
 };
