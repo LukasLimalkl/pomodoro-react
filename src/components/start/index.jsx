@@ -39,16 +39,26 @@ export const Start = () => {
         };
     }, [isCounting]);
 
-    const handleStart = () => {
-        setIsCounting(true);
+    const handleStartPause = () => {
+        if (isCounting) {
+            setIsCounting(false);
+        } else {
+            setIsCounting(true);
+        }
+    };
+
+    const reStart = () => {
+        setIsCounting(false);
+        setDisplay('25 : 00');
     };
 
     return (
         <div>
             <Styled.Container>{display}</Styled.Container>
-            <button onClick={handleStart} disabled={isCounting}>
-                Iniciar Contagem
+            <button onClick={handleStartPause}>
+                {isCounting ? 'Pausar' : 'Iniciar'}
             </button>
+            <button onClick={reStart}>Reniciar</button>
         </div>
     );
 };
