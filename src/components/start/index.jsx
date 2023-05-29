@@ -1,23 +1,44 @@
 import * as Styled from './styles';
 
-const minutes = 0;
-const seconds = 0;
+// const timer = (duration) => {
+//     let min = 25;
+//     let sec = 0;
+//     duration = min * 60 + sec;
 
-let duration = minutes.current * 60;
+//     let timer = duration;
+//     let minutes, seconds;
+//     let display;
 
-const timer = (duration) => {
-    let timer = duration;
-    let minutes;
+//     setInterval(() => {
+//         minutes = Math.floor(timer / 60);
+//         seconds = Math.floor(timer % 60);
 
-    setInterval(() => {
-        minutes = timer / 60;
-    }, 1000);
-};
+//         minutes = minutes < 10 ? '0' + minutes : minutes;
+//         seconds = seconds < 10 ? '0' + seconds : seconds;
+
+//         display = `${minutes} : ${seconds}`;
+//     }, 1000);
+// };
 
 export const Start = () => {
-    return (
-        <Styled.Container>
-            {minutes}:{seconds}
-        </Styled.Container>
-    );
+    const timer = (duration) => {
+        let min = 25;
+        let sec = 0;
+        duration = min * 60 + sec;
+
+        let timer = duration;
+        let minutes, seconds;
+        let display;
+
+        setInterval(() => {
+            minutes = Math.floor(timer / 60);
+            seconds = Math.floor(timer % 60);
+
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+            seconds = seconds < 10 ? '0' + seconds : seconds;
+
+            display = `${minutes} : ${seconds}`;
+        }, 1000);
+    };
+    return <Styled.Container>{timer}</Styled.Container>;
 };
