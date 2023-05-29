@@ -1,42 +1,54 @@
 import { useEffect, useState } from 'react';
 import * as Styled from './styles';
 
+import React from 'react';
+
 export const Start = () => {
     const [display, setDisplay] = useState('25 : 00');
+    const [isCounting, setIsCounting] = useState(false);
 
     useEffect(() => {
-        let min = 25;
-        let sec = 0;
-        let duration = min * 60 + sec;
+        let intervalId;
 
-        let timer = duration;
+        if (isCounting) {
+            let min = 25;
+            let sec = 0;
+            let duration = min * 60 + sec;
+            let timer = duration;
 
-        const intervalId = setInterval(() => {
-            let minutes = Math.floor(timer / 60);
-            let seconds = Math.floor(timer % 60);
+            intervalId = setInterval(() => {
+                let minutes = Math.floor(timer / 60);
+                let seconds = Math.floor(timer % 60);
 
-            minutes = minutes < 10 ? '0' + minutes : minutes;
-            seconds = seconds < 10 ? '0' + seconds : seconds;
+                minutes = minutes < 10 ? '0' + minutes : minutes;
+                seconds = seconds < 10 ? '0' + seconds : seconds;
 
-            const newDisplay = `${minutes} : ${seconds}`;
-            setDisplay(newDisplay);
+                const newDisplay = `${minutes} : ${seconds}`;
+                setDisplay(newDisplay);
 
-            timer--;
+                timer--;
 
-            if (timer < 0) {
-                clearInterval(intervalId);
-            }
-        }, 1000);
+                if (timer < 0) {
+                    clearInterval(intervalId);
+                }
+            }, 1000);
+        }
 
         return () => {
             clearInterval(intervalId);
         };
-    }, []);
+    }, [isCounting]);
+
+    const handleStart = () => {
+        setIsCounting(true);
+    };
 
     return (
-        <Styled.Container>
-            {display}
-            <button onClick={() => callTimer}>sta</button>
-        </Styled.Container>
+        <div>
+            <Styled.Container>{display}</Styled.Container>
+            <button onClick={handleStart} disabled={isCounting}>
+                Iniciar Contagem
+            </button>
+        </div>
     );
 };
