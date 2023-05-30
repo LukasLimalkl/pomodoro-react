@@ -25,12 +25,18 @@ export const Start = () => {
         }
     };
 
+    const resetTimer = () => {
+        setTimer(periodTime);
+        setTimeLeft(timer);
+    };
+
     return (
         <Styled.Container>
             <span>{timeLeft}</span>
             <button onClick={startTimer}>
                 {isActive ? 'Pausar' : 'Start'}
             </button>
+            <button onClick={resetTimer}>Reset</button>
         </Styled.Container>
     );
 };
