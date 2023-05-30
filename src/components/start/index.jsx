@@ -2,12 +2,14 @@ import { format } from 'date-fns';
 import React, { useEffect, useState } from 'react';
 import * as Styled from './styles';
 
-export const Start = () => {
-    const periodTime = 60 * 25;
+//eslint-disable-next-line
+export const Start = ({ tempo }) => {
+    const periodTime = 60 * 0.05;
     const [timer, setTimer] = useState(periodTime);
-    const [timeLeft, setTimeLeft] = useState(0);
+    const [timeLeft, setTimeLeft] = useState('00:00');
     const [isActive, setIsActive] = useState(false);
     const [storeTimeout, setStoreTimeOut] = useState(null);
+    const [isOver, setIsOver] = useState(false);
 
     useEffect(() => {
         if (isActive) {
@@ -17,11 +19,16 @@ export const Start = () => {
                     setTimeLeft(format(timer * 1000, 'mm:ss'));
                 }, 1000),
             );
+            if (timeLeft === 0) {
+                clearTimeout(storeTimeout);
+                setIsOver(true);
+                console.log(isOver);
+            }
         } else {
             clearTimeout(storeTimeout);
         }
         //eslint-disable-next-line react-hooks/exhaustive-deps
-    }, 0);
+    }, [timer, isActive, timeLeft]);
 
     const startTimer = () => {
         if (isActive) {
