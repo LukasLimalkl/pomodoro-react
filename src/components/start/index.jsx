@@ -7,15 +7,21 @@ export const Start = () => {
     const [timer, setTimer] = useState(periodTime);
     const [timeLeft, setTimeLeft] = useState(0);
     const [isActive, setIsActive] = useState(false);
+    const [storeTimeout, setStoreTimeOut] = useState(null);
 
     useEffect(() => {
         if (isActive) {
-            setTimeout(() => {
-                setTimer(timer - 1);
-                setTimeLeft(format(timer * 1000, 'mm:ss'));
-            }, 1000);
+            setStoreTimeOut(
+                setTimeout(() => {
+                    setTimer(timer - 1);
+                    setTimeLeft(format(timer * 1000, 'mm:ss'));
+                }, 1000),
+            );
+        } else {
+            clearTimeout(storeTimeout);
         }
-    }, [timer, isActive]);
+        //eslint-disable-next-line react-hooks/exhaustive-deps
+    }, 0);
 
     const startTimer = () => {
         if (isActive) {
@@ -27,16 +33,17 @@ export const Start = () => {
 
     const resetTimer = () => {
         setTimer(periodTime);
-        setTimeLeft(timer);
+        setTimeLeft('25:00', 'mm:ss');
+        setIsActive(false);
     };
 
     return (
         <Styled.Container>
             <span>{timeLeft}</span>
-            <button onClick={startTimer}>
+            <button onClick={() => startTimer()}>
                 {isActive ? 'Pausar' : 'Start'}
             </button>
-            <button onClick={resetTimer}>Reset</button>
+            <button onClick={() => resetTimer()}>Reset</button>
         </Styled.Container>
     );
 };
