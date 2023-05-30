@@ -1,11 +1,14 @@
 import * as Styled from './styles';
 
-export const Config = () => {
+//eslint-disable-next-line
+export const Config = ({startAndPause, reset , addMoreTime, addMediumTime,addLessTime,isActive }) => {
     return (
         <Styled.Container>
-            <button>Start</button>
-            <button>Pause</button>
-            <button>Reniciar</button>
+            <input type="number" />
+            <button onClick={startAndPause}>
+                {isActive ? 'Pausar' : 'Start'}
+            </button>
+            <button onClick={reset}>Reset</button>
         </Styled.Container>
     );
 };

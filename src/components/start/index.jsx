@@ -1,12 +1,15 @@
 import { format } from 'date-fns';
 import React, { useEffect, useState } from 'react';
+import { Config } from '../config';
 import * as Styled from './styles';
 
 //eslint-disable-next-line
-export const Start = ({ tempo }) => {
-    const periodTime = 60 * 0.05;
-    const [timer, setTimer] = useState(periodTime);
-    const [timeLeft, setTimeLeft] = useState('00:00');
+export const Start = () => {
+    const periodTime = 60 * 25;
+
+    const [baseTime, setBaseTime] = useState(periodTime);
+    const [timer, setTimer] = useState(baseTime);
+    const [timeLeft, setTimeLeft] = useState(format(baseTime * 1000, 'mm:ss'));
     const [isActive, setIsActive] = useState(false);
     const [storeTimeout, setStoreTimeOut] = useState(null);
     const [isOver, setIsOver] = useState(false);
@@ -39,18 +42,19 @@ export const Start = ({ tempo }) => {
     };
 
     const resetTimer = () => {
-        setTimer(periodTime);
+        setTimer(baseTime);
         setTimeLeft('25:00', 'mm:ss');
         setIsActive(false);
     };
 
     return (
         <Styled.Container>
-            <span>{timeLeft}</span>
-            <button onClick={() => startTimer()}>
-                {isActive ? 'Pausar' : 'Start'}
-            </button>
-            <button onClick={() => resetTimer()}>Reset</button>
+            <div>{timeLeft}</div>
+            <Config
+                startAndPause={startTimer}
+                reset={resetTimer}
+                isActive={isActive}
+            />
         </Styled.Container>
     );
 };
