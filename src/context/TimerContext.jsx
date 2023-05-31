@@ -64,8 +64,20 @@ export const TimerProvider = ({ children }) => {
     return (
         <TimerContext.Provider
             value={{
+                resetTimer,
+                handleChange,
+                startTimer,
+                setBaseTime,
+                value,
+                baseTime,
+                timer,
+                isActive,
                 timeLeft,
-                setTimeLeft,
+                isOver,
+                storeTimeout,
+                periodTime,
+                shortPause,
+                longPause,
             }}
         >
             {children}

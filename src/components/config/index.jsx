@@ -1,20 +1,33 @@
+import { useContext } from 'react';
+import { TimerContext } from '../../context/TimerContext';
 import * as Styled from './styles';
 
 //eslint-disable-next-line
-export const Config = ({ startAndPause, reset, addMoreTime, addMediumTime, addLessTime, isActive, inputValue }) => {
+export const Config = () => {
+    const {
+        resetTimer,
+        handleChange,
+        startTimer,
+        baseTime,
+        setBaseTime,
+        periodTime,
+        longPause,
+        shortPause,
+        isActive,
+    } = useContext(TimerContext);
 
     return (
         <Styled.Container>
             <div>
-                <button onClick={addMoreTime}>25</button>
-                <button onClick={addMediumTime}>10</button>
-                <button onClick={addLessTime}>5</button>
+                <button onClick={() => setBaseTime(periodTime)}>25</button>
+                <button onClick={() => setBaseTime(longPause)}>10</button>
+                <button onClick={() => setBaseTime(shortPause)}>5</button>
             </div>
-            <input type="number" onChange={inputValue} />
-            <button onClick={startAndPause}>
+            <input type="number" onChange={handleChange} />
+            <button onClick={startTimer}>
                 {isActive ? 'Pausar' : 'Start'}
             </button>
-            <button onClick={reset}>Reset</button>
+            <button onClick={resetTimer}>Reset</button>
         </Styled.Container>
     );
 };
