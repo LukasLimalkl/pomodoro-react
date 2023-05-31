@@ -54,7 +54,6 @@ export const TimerProvider = ({ children }) => {
             setIsActive(true);
         }
     };
-
     const resetTimer = () => {
         setIsActive(false);
         setTimer(baseTime);

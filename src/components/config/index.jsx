@@ -25,7 +25,7 @@ export const Config = () => {
                 <button onClick={() => setBaseTime(shortPause)}>5</button>
             </div>
             <input
-                type="number"
+                type="text"
                 onChange={(e) => setCustomTime(e.target.value)}
                 min="0"
                 max="60"
