@@ -6,7 +6,8 @@ import * as Styled from './styles';
 export const Config = () => {
     const {
         resetTimer,
-        handleChange,
+        customTime,
+        setCustomTime,
         startTimer,
         baseTime,
         setBaseTime,
@@ -23,7 +24,12 @@ export const Config = () => {
                 <button onClick={() => setBaseTime(longPause)}>10</button>
                 <button onClick={() => setBaseTime(shortPause)}>5</button>
             </div>
-            <input type="number" onChange={handleChange} />
+            <input
+                type="number"
+                onChange={(e) => setCustomTime(e.target.value)}
+                min="0"
+                max="60"
+            />
             <button onClick={startTimer}>
                 {isActive ? 'Pausar' : 'Start'}
             </button>
