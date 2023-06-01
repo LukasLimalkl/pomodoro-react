@@ -1,5 +1,4 @@
 import { useContext, useEffect, useState } from 'react';
-import { Interval } from './components/Interval';
 import { Config } from './components/config';
 import { Start } from './components/start';
 import { TimerContext } from './context/TimerContext';
@@ -17,7 +16,7 @@ function App() {
 
     return (
         <Styled.Container>
-            {timeSwitch ? <Interval /> : <Start />}
+            <Start />
             <Config />
         </Styled.Container>
     );
