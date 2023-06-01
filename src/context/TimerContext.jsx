@@ -14,6 +14,12 @@ export const TimerProvider = ({ children }) => {
     const [isActive, setIsActive] = useState(false);
     const [storeTimeout, setStoreTimeOut] = useState(null);
 
+    //buttons fn
+
+    const [pomodoro, setPomodoro] = useState(true);
+    const [shortBreak, setShortBreak] = useState(false);
+    const [longBreak, setLongBreak] = useState(false);
+
     useEffect(() => {
         if (isActive && timer >= 0) {
             setStoreTimeOut(
@@ -47,6 +53,12 @@ export const TimerProvider = ({ children }) => {
                 resetTimer,
                 startTimer,
                 setCustomTime,
+                setPomodoro,
+                setShortBreak,
+                setLongBreak,
+                shortBreak,
+                longBreak,
+                pomodoro,
                 customTime,
                 timer,
                 isActive,
