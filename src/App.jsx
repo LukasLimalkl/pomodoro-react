@@ -7,19 +7,17 @@ import * as Styled from './styles';
 
 function App() {
     const { timeLeft } = useContext(TimerContext);
-    const [isInterval, setIsInterval] = useState(false);
-    const [isTimeStudy, setIsTimeStudy] = useState(false);
+    const [timeSwitch, setTimeSwitch] = useState(false);
 
     useEffect(() => {
         if (timeLeft <= '00:00') {
-            setIsInterval(true);
-            console.log('cabo');
+            setTimeSwitch(true);
         }
-    }, [timeLeft]);
+    }, [timeLeft, timeSwitch]);
 
     return (
         <Styled.Container>
-            {isInterval ? <Interval /> : <Start />}
+            {timeSwitch ? <Interval /> : <Start />}
             <Config />
         </Styled.Container>
     );

@@ -17,9 +17,6 @@ export const TimerProvider = ({ children }) => {
     const [storeTimeout, setStoreTimeOut] = useState(null);
     const [isOver, setIsOver] = useState(false);
 
-    const [timerPomo, setTimerPomo] = useState(false);
-    const [timerInterval, setTimerInterval] = useState(false);
-
     useEffect(() => {
         if (isActive && timer >= 0) {
             setStoreTimeOut(
