@@ -6,6 +6,8 @@ export const TimerContext = createContext();
 //eslint-disable-next-line
 export const TimerProvider = ({ children }) => {
     const periodTime = 60 * 25;
+    const shortB = 60 * 5;
+    const longB = 60 * 10;
 
     const [customTime, setCustomTime] = useState(0);
     const [baseTime, setBaseTime] = useState(periodTime);
@@ -56,6 +58,12 @@ export const TimerProvider = ({ children }) => {
                 setPomodoro,
                 setShortBreak,
                 setLongBreak,
+                setTimeLeft,
+                setBaseTime,
+                setTimer,
+                longB,
+                baseTime,
+                shortB,
                 shortBreak,
                 longBreak,
                 pomodoro,
