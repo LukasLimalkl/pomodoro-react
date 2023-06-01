@@ -12,5 +12,13 @@ export const Container = styled.div`
     > button {
         width: 100%;
         height: 100%;
+        border: none;
+        border-radius: 8px;
+        font-size: 15px;
+        cursor: pointer;
+        opacity: 0.9;
+    }
+    > button:hover {
+        opacity: 1;
     }
 `;

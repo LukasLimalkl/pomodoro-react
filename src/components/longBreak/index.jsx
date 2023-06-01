@@ -5,5 +5,9 @@ import * as Styled from './styles';
 export const LongBreaks = () => {
     const { timeLeft } = useContext(TimerContext);
 
-    return <Styled.Container>{timeLeft}</Styled.Container>;
+    return (
+        <Styled.Container>
+            <div>{timeLeft}</div>
+        </Styled.Container>
+    );
 };
